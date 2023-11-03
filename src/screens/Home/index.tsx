@@ -1,4 +1,5 @@
 import { Participant } from "../../components/Participant";
+import Toast from "react-native-toast-message";
 import { styles } from "./styles";
 import { Text, View, TextInput, TouchableOpacity, FlatList } from "react-native";
 
@@ -6,10 +7,23 @@ export function Home() {
     const participant = ["Weslley Oliveira", "Gael Oliveira", "Camile Melo", "Renally Kallen", "Karol", "Andre", "Goretti", "Wendell", "Riquelmi", "Milenna", "Henrique"]
 
     function handleParticipantAdd() {
+        if(participant.includes("Weslley Oliveira")) {
+            return Toast.show({
+                position: "bottom",
+                type: 'success',
+                text1: 'This participant is already 👋'
+              });
+        }
+
         console.log("You click in button")
     }
 
     function handleParticipantRemove() {
+        Toast.show({
+            position: "bottom",
+            type: "error",
+            text1: 'This participant is deleted 👋'
+          });
         console.log("You click in button to remove")
     }
     return (

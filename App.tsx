@@ -1,5 +1,6 @@
 import { StatusBar } from "react-native"
 import { Home } from "./src/screens/Home"
+import Toast from 'react-native-toast-message'
 
 
 export default function App() {
@@ -11,6 +12,7 @@ export default function App() {
         translucent
       />
       <Home />
+      <Toast />
     </>
   )
 }

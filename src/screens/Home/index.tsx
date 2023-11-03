@@ -1,16 +1,17 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
+import { Text, View, TextInput, TouchableOpacity, FlatList } from "react-native";
+import Toast from "react-native-toast-message";
 
 import { Participant } from "../../components/Participant";
-import Toast from "react-native-toast-message";
+
 import { styles } from "./styles";
-import { Text, View, TextInput, TouchableOpacity, FlatList } from "react-native";
 
 export function Home() {
-    const [participant, setParticipant] = useState<string[]>([])
+    const [participants, setParticipants] = useState<string[]>([])
     const [name, setName] = useState("")
 
     function handleParticipantAdd() {
-        if (participant.includes(name)) {
+        if (participants.includes(name)) {
             return Toast.show({
                 position: "bottom",
                 type: 'success',
@@ -18,22 +19,23 @@ export function Home() {
             });
         }
 
-        setParticipant(prevState => [...prevState, name])
+        setParticipants(prevState => [...prevState, name])
         setName("")
     }
 
-    function handleParticipantRemove() {
+    function handleParticipantRemove(name: string) {
+        setParticipants(prevState => prevState.filter(participant => participant !== name))
+
         Toast.show({
             position: "bottom",
             type: "error",
-            text1: 'This participant is deleted 👋'
+            text1: `This participant ${name} is deleted 👋`
         });
-        console.log("You click in button to remove")
     }
     return (
         <View style={styles.container}>
             <Text style={styles.eventName}>
-                Event name
+                Weslley Party
             </Text>
             <Text style={styles.subtitle}>
                 Wednesday, 1th november, 2023
@@ -54,13 +56,13 @@ export function Home() {
             </View>
 
             <FlatList
-                data={participant}
+                data={participants}
                 keyExtractor={item => item}
                 renderItem={({ item }) => (
                     <Participant
                         key={item}
                         name={item}
-                        onRemove={handleParticipantRemove}
+                        onRemove={() => handleParticipantRemove(item)}
                     />
                 )}
                 showsVerticalScrollIndicator={false}

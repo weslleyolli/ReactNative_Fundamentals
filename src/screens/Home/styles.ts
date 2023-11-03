@@ -5,7 +5,7 @@ export const styles = StyleSheet.create({
       flex: 1,
       backgroundColor: "#131016",
       padding: 24,
-      paddingTop: 48,
+      paddingTop: 100,
     },
     eventName:{
       color: "#ffffff",

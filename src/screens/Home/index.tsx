@@ -6,10 +6,11 @@ import { styles } from "./styles";
 import { Text, View, TextInput, TouchableOpacity, FlatList } from "react-native";
 
 export function Home() {
-    const [participant, setParticipant] = useState(['Joao'])
+    const [participant, setParticipant] = useState<string[]>([])
+    const [name, setName] = useState("")
 
     function handleParticipantAdd() {
-        if (participant.includes("Weslley Oliveira")) {
+        if (participant.includes(name)) {
             return Toast.show({
                 position: "bottom",
                 type: 'success',
@@ -17,7 +18,8 @@ export function Home() {
             });
         }
 
-        setParticipant(prevState => [...prevState, "ana"])
+        setParticipant(prevState => [...prevState, name])
+        setName("")
     }
 
     function handleParticipantRemove() {
@@ -42,9 +44,11 @@ export function Home() {
                     style={styles.input}
                     placeholder="Participant name's"
                     placeholderTextColor="#6B6B6B"
+                    onChangeText={setName}
+                    value={name}
                 />
 
-                <TouchableOpacity style={styles.button} onPress={handleParticipantAdd}>
+                <TouchableOpacity style={styles.button} onPress={handleParticipantAdd} >
                     <Text style={styles.buttonText}> + </Text>
                 </TouchableOpacity>
             </View>

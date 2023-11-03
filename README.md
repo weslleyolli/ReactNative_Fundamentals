@@ -25,13 +25,13 @@ This project was developed using the following technologies:
 Clone the project and access the folder.
 
 ```bash
-$ git clone https://github.com/weslleyolli/nlw-setup-ignite
-$ cd nlw-setup-ignite
+$ git clone https://github.com/weslleyolli/ReactNative_Fundamentals
+$ cd ReactNative_Fundamentals
 ```
 
 Follow the steps below:
 
-### Expo
+### Mobile
 
 ```bash
 # Install the web dependencies
